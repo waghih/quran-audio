@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SurahList from './components/SurahList';
+import { Container } from 'reactstrap';
 
 class App extends Component {
   render() {
@@ -10,9 +12,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Container fluid className="mt-5 p-0">
+          <SurahList />
+        </Container>        
       </div>
     );
   }
