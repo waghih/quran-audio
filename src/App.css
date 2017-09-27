@@ -3,13 +3,12 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
 .App-header {
   background-color: #2582D8;
-  height: 150px;
+  height: auto;
   padding: 20px;
   color: white;
 }
@@ -18,15 +17,14 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .audio-container {
   position: fixed;
   bottom: 0;
   width: 100%;
   background: #fff;
   border-top: 1px solid #333;
+}
+
+.pb-10 {
+  padding-bottom: 10rem;
 }
