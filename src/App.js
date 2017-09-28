@@ -46,7 +46,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.qari)
     return (
       <div className="App">
         <div className="App-header">

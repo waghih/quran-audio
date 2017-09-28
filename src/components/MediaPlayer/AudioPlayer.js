@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Row, Col } from 'reactstrap';   
+import { Row, Col } from 'reactstrap';
+import { connect } from 'react-redux';   
+import { setSelectedAudioIndex, playAudio } from '../../actions';
+import { AUDIO_URL } from '../../constants';
 
 class AudioPlayer extends Component{
 
@@ -8,12 +11,20 @@ class AudioPlayer extends Component{
         super(props);
         this.state = {
             isPlaying: false,
-            resume: false
+            resume: false,
+            file: {}
         }
+    }
+
+    componentWillMount() {
+        console.log("audio", this.props)
     }
 
     handleButtonPlay() {
         this.setState({ isPlaying: true });
+        this.props.playAudio(this.props.selectedIndex, this.props.qari.relative_path)
+        // let file = new Audio(`${AUDIO_URL}/${this.props.qari.relative_path}${this.props.selectedIndex.data.file_name}`)
+        // console.log(file);
         console.log("Playing...");
     }
 
@@ -76,4 +87,12 @@ class AudioPlayer extends Component{
 
 };
 
-export default AudioPlayer;
+function mapsStateToProps(state) {
+    return {
+        qari: state.qari,
+        audio_files: state.audio_files,
+        selectedIndex: state.selectedIndex
+    }
+}
+
+export default connect (mapsStateToProps, { setSelectedAudioIndex, playAudio })(AudioPlayer);

@@ -21,5 +21,12 @@ export const GET_FILES = 'GET_FILES';
 export const GET_FILES_FAIL = 'GET_FILES_FAIL';
 
 // Url
-
 export const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+export const AUDIO_URL = 'https://download.quranicaudio.com/quran';
+
+// Audio
+export const PLAY = 'PLAY_AUDIO';
+export const PAUSE = 'PAUSE_AUDIO';
+export const PLAY_PAUSE = 'PLAY_PAUSE_AUDIO';
+export const SKIP_NEXT = 'SKIP_NEXT_AUDIO';
+export const SKIP_PREVIOUS = 'SKIP_PREVIOUS_AUDIO';

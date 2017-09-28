@@ -4,13 +4,14 @@ import Duration from './Duration';
 import SurahName from './SurahName';
 import AudioPlayer from './MediaPlayer/AudioPlayer';
 import { connect } from 'react-redux';
+import { setSelectedAudioIndex } from '../actions';
 import '../App.css';
 
 class SurahList extends Component {
 
   renderSurahList() {
-    return this.props.files.map((file) => 
-      <ListGroupItem key={file.surah_id}>
+    return this.props.files.map((file, i) => 
+      <ListGroupItem key={file.surah_id} onClick={() => this.props.setSelectedAudioIndex(file, i)}>
         <Row className="w-100">
           <Col xs="1" className="pr-0 text-left font-weight-bold">{file.surah_id}.</Col>
           <Col xs="9" className="text-left pl-0">
@@ -42,8 +43,9 @@ class SurahList extends Component {
 function mapStateToProps(state) {
   return {
     chapters: state.chapters,
-    files: state.audio_files
+    files: state.audio_files,
+    selectedIndex: state.selectedIndex
   }
 }
 
-export default connect(mapStateToProps, null)(SurahList);
+export default connect(mapStateToProps, { setSelectedAudioIndex })(SurahList);
