@@ -3,6 +3,10 @@ import {
     GET_FILES, 
     SELECTED_QARI,
     PLAY,
+    PAUSE,
+    PLAY_PAUSE,
+    UPDATE,
+    FINISH,
     MUSIC_PLAYER_SET_SELECTED_SONG_INDEX
 } from '../constants';
 
@@ -39,6 +43,32 @@ export function playAudio(audio_file, relative_path) {
     return action;
 }
 
+export function updateAudio(previousAudio, audio_file, relative_path) {
+    const action = {
+        type: UPDATE,
+        previousAudio,
+        audio_file,
+        relative_path
+    }
+    return action;
+}
+
+export function resumeAudio(audio) {
+    const action = {
+        type: PLAY_PAUSE,
+        audio
+    }
+    return action;
+}
+
+export function pauseAudio(audio) {
+    const action = {
+        type: PAUSE,
+        audio
+    }
+    return action;
+}
+
 export function setSelectedAudioIndex(data, index) {
     const action = {
         type: MUSIC_PLAYER_SET_SELECTED_SONG_INDEX,
@@ -46,4 +76,11 @@ export function setSelectedAudioIndex(data, index) {
         index
     }
     return action;
+}
+
+export function audioFinish() {
+    const action = {
+        type: FINISH,
+    }
+    return action
 }

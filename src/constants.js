@@ -30,3 +30,5 @@ export const PAUSE = 'PAUSE_AUDIO';
 export const PLAY_PAUSE = 'PLAY_PAUSE_AUDIO';
 export const SKIP_NEXT = 'SKIP_NEXT_AUDIO';
 export const SKIP_PREVIOUS = 'SKIP_PREVIOUS_AUDIO';
+export const UPDATE = 'UPDATE_AUDIO';
+export const FINISH = 'AUDIO_FINISH';

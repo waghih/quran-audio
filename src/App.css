@@ -28,3 +28,24 @@
 .pb-10 {
   padding-bottom: 10rem;
 }
+
+.list-group-item:hover {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.list-group-item-custom {
+  border: 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.125) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+.list-group-item:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.125) !important;
+  
+}
+
+/* .list-group {
+  border: 1px solid rgba(0, 0, 0, 0.125) !important;
+} */

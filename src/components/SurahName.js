@@ -5,19 +5,37 @@ import { connect } from 'react-redux';
 class SurahName extends Component {
 
     getSurahNameById() {
-        let name = ''
+        let name = '';
+        let english_name = '';
         let { surah_id } = this.props.chapter;
         this.props.chapters.forEach(chapter => {
             if(surah_id === chapter.id) {
                 name = chapter.name.simple;
+                english_name = chapter.name.english;
             }
         })
-        return name;
+        switch(this.props.displayFor){
+            case 'list': {
+                return (
+                    <div>Surah {`${name} - (${english_name})`}</div>
+                );
+            }
+            case 'audio': {
+                return (
+                    <div className="text-left d-block pl-4">
+                        <h4>Surah {name}</h4>
+                        <p>{english_name}</p>
+                    </div>
+                );
+            }
+            default: 
+                return <div></div>;
+        }
     }
 
     render() {
         return (
-            <div>Surah {this.getSurahNameById()}</div>
+            <div>{this.getSurahNameById()}</div>
         )
     }
     

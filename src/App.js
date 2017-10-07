@@ -5,7 +5,8 @@ import SurahList from './components/SurahList';
 import { Container } from 'reactstrap';
 import { PROXY_URL } from './constants';
 import { connect } from 'react-redux';
-import { setChapters, setAudioFiles, setSelectedQari } from './actions';
+import AudioPlayer from './components/Media/AudioPlayer';
+import { setChapters, setAudioFiles, setSelectedQari, setSelectedAudioIndex } from './actions';
 
 class App extends Component {
   componentWillMount() {
@@ -32,6 +33,7 @@ class App extends Component {
     .then(response => response.json())
       .then(data => {
         this.props.setAudioFiles(data);
+        this.props.setSelectedAudioIndex(data[0], 0);
       });
   }
 
@@ -54,6 +56,7 @@ class App extends Component {
         </div>
         <Container fluid className="mt-5 p-0">
           <SurahList />
+          <AudioPlayer />
         </Container>        
       </div>
     );
@@ -69,5 +72,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, { 
   setChapters, 
   setAudioFiles, 
-  setSelectedQari 
+  setSelectedQari,
+  setSelectedAudioIndex 
 })(App);
