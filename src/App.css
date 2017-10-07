@@ -3,7 +3,8 @@
 }
 
 .App-logo {
-  height: 80px;
+  width: 220px;
+  height: auto;
 }
 
 .App-header {
@@ -11,6 +12,7 @@
   height: auto;
   padding: 20px;
   color: white;
+  box-shadow: 0px 1px 5px -2px rgba(0, 0, 0, 0.5);
 }
 
 .App-intro {
@@ -22,11 +24,11 @@
   bottom: 0;
   width: 100%;
   background: #fff;
-  border-top: 1px solid #333;
+  box-shadow: 0px 1px 5px -2px rgba(0, 0, 0, 0.5);
 }
 
-.pb-10 {
-  padding-bottom: 10rem;
+.pb-13 {
+  padding-bottom: 13rem;
 }
 
 .list-group-item:hover {
@@ -46,6 +48,32 @@
   
 }
 
-/* .list-group {
-  border: 1px solid rgba(0, 0, 0, 0.125) !important;
-} */
+.border-1 {
+  border: 1px solid #000;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner {
+  box-sizing: border-box;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #2582D8;
+  animation: spinner .6s linear infinite;
+}
+
+.btn-audio {
+  cursor: pointer;
+  color: #555;
+  transform: scale(1);
+  transition: all .1s ease;
+}
+
+.btn-audio:hover {
+  color: #222;
+  transform: scale(1.1);
+}

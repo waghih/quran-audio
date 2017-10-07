@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './quran.svg';
+import logo from './quran_khat.png';
 import './App.css';
 import SurahList from './components/SurahList';
 import { Container } from 'reactstrap';
@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   getDefaultQari() {
-    const QARI_URL = 'https://quranicaudio.com/api/qaris/65';
+    const QARI_URL = 'https://quranicaudio.com/api/qaris/13';
     console.log("Fetching data...");
     fetch(PROXY_URL + QARI_URL)
     .then(response => response.json())
@@ -52,12 +52,14 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2 className="pt-3">MyQuran</h2>
+          <h2>Quran Audio</h2>
         </div>
         <Container fluid className="mt-5 p-0">
           <SurahList />
+        </Container>
+        <footer>          
           <AudioPlayer />
-        </Container>        
+        </footer>        
       </div>
     );
   }

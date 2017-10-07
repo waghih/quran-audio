@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import formatSeconds from '../../utils/formatSeconds';
 import './Track.css';
-
-let interval;
 
 class Track extends Component {
 
     state = {
-        progress: 0
+        progress: 0,
+        currentTime: '',
+        duration: ''
     }
 
     componentDidUpdate() {
         const { audio } = this.props.audioplayer;
         if(audio) {
+            audio.onloadeddata = () => {
+                console.log("Audio loaded");
+                this.setState({ duration: formatSeconds(audio.duration) })
+            }
             audio.ontimeupdate = () => {
                 this.setCurrentProgress(audio);
+                this.displayCurrentTime(audio);
             }
         }
     }
@@ -24,8 +30,14 @@ class Track extends Component {
         this.setState({ progress: time_progress.toFixed(1) })
     }
 
-    seek(e) {
-        this.setState({ progress: e.target.value });
+    seekTrackChange(event) {
+        const { audio } = this.props.audioplayer;
+        if (audio) {
+            let new_time = ( event.target.value * audio.duration ) / 100;
+            audio.currentTime = new_time
+            this.setState({ progress: event.target.value });
+            this.setState({ currentTime: formatSeconds(new_time) });
+        }
     }
 
     calculateTrack() {
@@ -41,15 +53,6 @@ class Track extends Component {
         }
     }
 
-    setMaxDuration() {
-        const { audio } = this.props.audioplayer;
-        if(audio) {
-            return audio.duration;
-        } else {
-            return 100;
-        }
-    }
-
     calculateProgress() {
         const { started } = this.props.audioplayer
         if(started) {
@@ -59,16 +62,26 @@ class Track extends Component {
         }
     }
 
+    displayCurrentTime(audio) {
+        let time = formatSeconds(audio.currentTime);
+        this.setState({ currentTime: time });
+    }
+
     render() {
         return(
-            <input
-                type="range"
-                style={this.calculateTrack()} 
-                min="0" 
-                max="100"
-                value={this.calculateProgress()}
-                onChange={(event) => this.seek(event)}
-            />
+            <div className="d-flex">
+                <span>{this.state.currentTime}</span>
+                <input
+                    type="range"
+                    style={this.calculateTrack()}
+                    className="mx-3" 
+                    min="0" 
+                    max="100"
+                    value={this.calculateProgress()}
+                    onChange={(event) => this.seekTrackChange(event)}
+                />
+                <span>{this.state.duration}</span>
+            </div>
         );
     }
 

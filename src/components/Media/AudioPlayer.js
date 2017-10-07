@@ -15,10 +15,20 @@ import Track from './Track';
 
 class AudioPlayer extends Component{
 
+    state = {
+        loaded: true
+    }
+
     componentDidUpdate() {
         let { audio } = this.props.audioplayer;
         
         if(audio) {
+            audio.onloadstart =() => {
+                this.setState({ loaded: false });
+            }
+            audio.onloadedmetadata = () => {
+                this.setState({ loaded: true });
+            }
             audio.onended = () => {
                 this.props.audioFinish();
                 this.handleButtonSkipNext();
@@ -71,23 +81,29 @@ class AudioPlayer extends Component{
     }
     
     renderPlayState() {
-        if(this.props.audioplayer.playing) {
-            return (
-                <FontAwesome 
-                    className="mx-5"
-                    name='pause'
-                    size='4x'
-                    onClick={() => this.handleButtonPause()}
-                />
-            );
+        if(this.state.loaded) {
+            if(this.props.audioplayer.playing) {
+                return (
+                    <FontAwesome 
+                        className="btn-audio mx-5"
+                        name='pause'
+                        size='3x'
+                        onClick={() => this.handleButtonPause()}
+                    />
+                );
+            } else {
+                return (
+                    <FontAwesome 
+                        className="btn-audio mx-5"
+                        name='play'
+                        size='3x'
+                        onClick={() => this.handleButtonPlay()}
+                    />
+                );
+            }
         } else {
             return (
-                <FontAwesome 
-                    className="mx-5"
-                    name='play'
-                    size='4x'
-                    onClick={() => this.handleButtonPlay()}
-                />
+                <div className="spinner mx-5"></div>
             );
         }
     }
@@ -107,25 +123,29 @@ class AudioPlayer extends Component{
         return (
             <div className="audio-container py-4">
                 <Row>
-                    <Col xs='12' sm='4'>
+                    <Col xs='12' sm='6' md='4'>
                         {this.getSurahName()}
                     </Col>
-                    <Col xs='6' sm='4' className="d-flex justify-content-center align-items-center">
+                    <Col xs='12' sm='6' md='4' className="d-flex justify-content-center align-items-center">
                         <FontAwesome 
+                            className="btn-audio"
                             name='step-backward'
-                            size='2x'
+                            size='lg'
                             onClick={() => this.handleButtonSkipPrevious()}
                         />
                         {this.renderPlayState()}
                         <FontAwesome 
+                            className="btn-audio"
                             name='step-forward'
-                            size='2x'
+                            size='lg'
                             onClick={() => this.handleButtonSkipNext()}
                         />
                     </Col>
                 </Row>
                 <Row className="pt-4">
-                    <Track />
+                    <Col xs='10' md='6' className="mx-auto">
+                        <Track />                    
+                    </Col>
                 </Row>
             </div>
         );

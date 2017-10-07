@@ -9,7 +9,6 @@ import '../App.css';
 class SurahList extends Component {
 
   handleTrackSelection(file, i) {
-    console.log(this);
     if(this.props.audioplayer.playing) {
       this.props.setSelectedAudioIndex(file, i);
       this.props.updateAudio(this.props.audioplayer.audio, file, this.props.qari.relative_path);
@@ -41,7 +40,7 @@ class SurahList extends Component {
     return (
       <div>
         <Container>
-          <ListGroup className="pb-10 border rounded">
+          <ListGroup className="pb-13 border rounded">
             {this.renderSurahList()}
           </ListGroup>
         </Container>
