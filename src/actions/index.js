@@ -7,7 +7,8 @@ import {
     PLAY_PAUSE,
     UPDATE,
     FINISH,
-    MUSIC_PLAYER_SET_SELECTED_SONG_INDEX
+    MUSIC_PLAYER_SET_SELECTED_SONG_INDEX,
+    FETCH_RECITERS
 } from '../constants';
 
 export function setChapters(data) {
@@ -82,5 +83,13 @@ export function audioFinish() {
     const action = {
         type: FINISH,
     }
-    return action
+    return action;
+}
+
+export function loadReciters(data) {
+    const action = {
+        type: FETCH_RECITERS,
+        data
+    }
+    return action;
 }

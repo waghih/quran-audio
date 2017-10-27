@@ -7,6 +7,7 @@ import { PROXY_URL } from './constants';
 import { connect } from 'react-redux';
 import AudioPlayer from './components/Media/AudioPlayer';
 import { setChapters, setAudioFiles, setSelectedQari, setSelectedAudioIndex } from './actions';
+import Sidebar from './components/Sidebar';
 
 class App extends Component {
   componentWillMount() {
@@ -49,17 +50,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Quran Audio</h2>
+      <div id="outer-container" style={{height: '100%'}}>
+        <Sidebar />
+        <div id="page-wrap">
+          <div className="App">
+            <div className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h2>Quran Audio</h2>
+            </div>
+            <Container fluid className="mt-5 p-0">
+              <SurahList />
+            </Container>
+            <footer>          
+              <AudioPlayer />
+            </footer>        
+          </div>
         </div>
-        <Container fluid className="mt-5 p-0">
-          <SurahList />
-        </Container>
-        <footer>          
-          <AudioPlayer />
-        </footer>        
       </div>
     );
   }

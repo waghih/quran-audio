@@ -9,7 +9,8 @@ import {
     PAUSE,
     PLAY_PAUSE,
     UPDATE,
-    FINISH
+    FINISH,
+    FETCH_RECITERS
 } from '../constants';
 
 function chapters(state = [], action) {
@@ -18,6 +19,15 @@ function chapters(state = [], action) {
         return action.data;
       default:
         return state;
+    }
+}
+
+function reciters(state = [], action) {
+    switch(action.type) {
+        case FETCH_RECITERS:
+          return action.data;
+        default:
+          return state;
     }
 }
 
@@ -112,7 +122,8 @@ const rootReducer = combineReducers({
     audio_files,
     qari,
     selectedIndex,
-    audioplayer
+    audioplayer,
+    reciters
  });
   
 
