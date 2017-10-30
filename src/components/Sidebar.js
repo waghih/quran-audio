@@ -3,10 +3,18 @@ import BurgerMenu from 'react-burger-menu';
 import { PROXY_URL } from '../constants';
 import { connect } from 'react-redux';
 import { loadReciters } from '../actions';
+import { ListGroup, ListGroupItem, Input } from "reactstrap";
 
 const Menu = BurgerMenu['slide'];
 
 class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchKey: ''
+    }
+  }
+
   componentWillMount() {
     this.loadQaris();
   }
@@ -22,20 +30,30 @@ class Sidebar extends Component {
   }
 
   renderReciters() {
-    return this.props.reciters.map(reciter => 
-      <p>{reciter.name}</p>
+    let filteredReciters = this.props.reciters.filter((reciter) => {
+      return reciter.name.toLowerCase().indexOf(this.state.searchKey.toLocaleLowerCase()) !== -1;
+    })
+    return filteredReciters.map(reciter => 
+      <ListGroupItem key={reciter.id}>
+        {reciter.name}
+      </ListGroupItem>
     )
   }
 
   render() {
     return (
       <Menu
-        width={'25%'}
         styles={styles} 
         pageWrapId={ "page-wrap" }
         outerContainerId={ "outer-container" }>
         <div>
-          {this.renderReciters()}
+          <Input 
+            placeholder="Type to filter reciter..."
+            onChange={(event) => this.setState({ searchKey: event.target.value })}
+          />
+          <ListGroup>
+            {this.renderReciters()}
+          </ListGroup>
         </div>
       </Menu>
     );
@@ -69,8 +87,7 @@ var styles = {
     fill: '#373a47'
   },
   bmItemList: {
-    color: '#b8b7ad',
-    padding: '0.8em'
+    color: '#b8b7ad'
   },
   bmOverlay: {
     background: 'rgba(0, 0, 0, 0.3)'
