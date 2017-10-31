@@ -34,7 +34,7 @@ class Sidebar extends Component {
       return reciter.name.toLowerCase().indexOf(this.state.searchKey.toLocaleLowerCase()) !== -1;
     })
     return filteredReciters.map(reciter => 
-      <ListGroupItem key={reciter.id}>
+      <ListGroupItem className="no-radius" key={reciter.id}>
         {reciter.name}
       </ListGroupItem>
     )
@@ -48,6 +48,7 @@ class Sidebar extends Component {
         outerContainerId={ "outer-container" }>
         <div>
           <Input 
+            className="input-search"
             placeholder="Type to filter reciter..."
             onChange={(event) => this.setState({ searchKey: event.target.value })}
           />
@@ -60,7 +61,7 @@ class Sidebar extends Component {
   }
 }
 
-var styles = {
+const styles = {
   bmBurgerButton: {
     position: 'fixed',
     width: '36px',
