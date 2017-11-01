@@ -45,7 +45,6 @@
 
 .list-group-item:first-child {
   border-top: 1px solid rgba(0, 0, 0, 0.125) !important;
-  
 }
 
 .border-1 {
@@ -94,4 +93,25 @@
 { 
   border-radius: 5px;
 	background-color: #2582D8;
+}
+
+.no-radius {
+  border-radius: 0px !important;
+}
+
+.input-search {
+  height: 100px;
+  padding-top: 60px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #8A8A8A !important;
+  border-radius: 0 !important;
+}
+
+.input::placeholder {
+  color: #B8B8B8 !important;
+}
+
+.input-search:focus {
+  outline: none;
+  border-bottom: 1px solid #2582D8 !important;
 }
