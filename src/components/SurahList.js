@@ -40,7 +40,7 @@ class SurahList extends Component {
     return (
       <div>
         <Container>
-          <ListGroup className="pb-13 border rounded">
+          <ListGroup className="pb-13 rounded">
             {this.renderSurahList()}
           </ListGroup>
         </Container>
