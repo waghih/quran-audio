@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BurgerMenu from 'react-burger-menu';
 import { PROXY_URL } from '../constants';
 import { connect } from 'react-redux';
-import { loadReciters } from '../actions';
+import { loadReciters, setSelectedQari } from '../actions';
 import { ListGroup, ListGroupItem, Input } from "reactstrap";
 
 const Menu = BurgerMenu['slide'];
@@ -34,7 +34,7 @@ class Sidebar extends Component {
       return reciter.name.toLowerCase().indexOf(this.state.searchKey.toLocaleLowerCase()) !== -1;
     })
     return filteredReciters.map(reciter => 
-      <ListGroupItem className="no-radius" key={reciter.id}>
+      <ListGroupItem className="no-radius" key={reciter.id} onClick={() => this.props.setSelectedQari(reciter)}>
         {reciter.name}
       </ListGroupItem>
     )
@@ -106,5 +106,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  loadReciters
+  loadReciters,
+  setSelectedQari,
 })(Sidebar);
