@@ -1,6 +1,6 @@
 ## Quran Audio React Project
 
-to setup project, run:
+to initialize project, run:
 
 ```npm install```
 
