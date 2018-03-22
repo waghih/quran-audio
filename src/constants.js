@@ -1,4 +1,3 @@
-export const HOME = 'HOME';
 export const SELECTED_QARI = 'SELECTED_QARI';
 export const FETCH_RECITERS = 'FETCH_RECITERS';
 export const FETCH_RECITERS_FAIL = 'FETCH_RECITERS_FAIL';
